@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gobeyond Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Roboto', sans-serif; background: #0c0c0c; color: #e8e6e0; }
+  .port { width: 1200px; margin: 0 auto; padding: 0 80px; }
+
+  .shell { display: grid; grid-template-columns: 80px 1fr; gap: 0 48px; padding: 3.5rem 0; border-bottom: 1px solid #1a1a1a; }
+  .shell-last { display: grid; grid-template-columns: 80px 1fr; gap: 0 48px; padding: 3.5rem 0 5rem; }
+  .sec-num { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #333; padding-top: 6px; }
+  h2 { font-size: 30px; font-weight: 700; line-height: 1.2; margin-bottom: 28px; color: #f0ede8; max-width: 780px; }
+  p { font-size: 14px; line-height: 1.8; color: #666; margin-bottom: 24px; }
+
+  /* 01 */
+  .six-col { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px; }
+  .mlabel { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #3a3a3a; margin-bottom: 6px; }
+  .mval { font-size: 13px; color: #888; display: flex; align-items: flex-start; gap: 4px; }
+  .mval::before { line-height: 1.6; }
+  .mval::before { content: '↳'; color: #3a3a3a; font-size: 12px; }
+
+  /* 02 */
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+  .impact-block { border-left: 1px solid #1a1a1a; padding-left: 28px; }
+  .pct { font-size: 52px; font-weight: 700; color: #f0ede8; line-height: 1; }
+  .ilabel { font-size: 13px; font-weight: 500; color: #aaa; margin: 10px 0 12px; }
+  .idesc { font-size: 13px; color: #555; line-height: 1.7; }
+
+  /* 03 — fixed alignment */
+  .goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .goal-col { display: flex; flex-direction: column; }
+  .col-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #3a3a3a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #1a1a1a; }
+  .col-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+  .col-dot { width: 5px; height: 5px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; background: #3a3a3a; }
+  .col-item-title { font-size: 14px; color: #d0cdc5; line-height: 1.5; }
+  .col-item-sub { font-size: 12px; color: #555; margin-top: 3px; line-height: 1.45; }
+
+  /* 04 */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .diagram-wrap { display: flex; flex-direction: column; height: 100%; }
+  .dlabel { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #333; margin-bottom: 12px; }
+  .dbox { background: #111; border-radius: 12px; padding: 22px 14px; flex: 1; }
+  .dbox svg { display: block; width: 100%; }
+
+  /* 05 */
+  .flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; }
+  .flow-item { display: flex; gap: 18px; align-items: flex-start; padding: 0.85rem 0; border-bottom: 1px solid #181818; }
+  .flow-item:nth-child(5), .flow-item:nth-child(6) { border-bottom: none; }
+  .flow-n { font-size: 11px; color: #3a3a3a; min-width: 22px; padding-top: 3px; flex-shrink: 0; }
+  .flow-title { font-size: 14px; color: #d0cdc5; font-weight: 500; line-height: 1.5; }
+  .flow-sub { font-size: 12px; color: #555; margin-top: 3px; line-height: 1.45; }
+  .tool-chip { font-size: 10px; padding: 3px 10px; border: 1px solid #1e1e1e; border-radius: 100px; color: #333; flex-shrink: 0; align-self: flex-start; margin-top: 4px; white-space: nowrap; }
+  .tools-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .tag { font-size: 12px; padding: 4px 12px; border: 1px solid #222; border-radius: 100px; color: #555; }
+
+  /* 06 — friction */
+  .friction-layout { display: grid; grid-template-columns: 210px 1fr; gap: 56px; }
+  .summary-row { display: flex; gap: 20px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid #1a1a1a; }
+  .sval { font-size: 24px; font-weight: 700; color: #f0ede8; line-height: 1; }
+  .slbl { font-size: 11px; color: #444; margin-top: 3px; }
+  .sdiv { width: 1px; background: #1a1a1a; align-self: stretch; }
+  .filter-col { display: flex; flex-direction: column; gap: 8px; }
+  .fbtn { font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 100px; border: 1px solid #222; background: transparent; color: #555; cursor: pointer; text-align: left; letter-spacing: 0.03em; font-family: 'Roboto', sans-serif; transition: all .15s; }
+  .fbtn:hover { border-color: #3a3a3a; color: #888; }
+  .fbtn.a-all { border-color: #555; color: #c8c4bc; background: #1a1a1a; }
+  .fbtn.a-pain { border-color: #8a3318; color: #c07050; background: #1e0f0a; }
+  .fbtn.a-delight { border-color: #3a5c12; color: #7ab07a; background: #0e1a0a; }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-content: start; }
+  .icard { background: #111; border: 1px solid #1e1e1e; border-radius: 12px; padding: 16px 18px; cursor: pointer; transition: border-color .2s, background .2s; }
+  .icard:hover { background: #161616; border-color: #2a2a2a; }
+  .icard.open { background: #141414; border-color: #2e2e2e; }
+  .icard.hidden { display: none; }
+  .card-top { display: flex; align-items: flex-start; gap: 10px; }
+  .card-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .card-dot.pain { background: #8a3318; }
+  .card-dot.delight { background: #3a5c12; }
+  .card-title { font-size: 12px; font-weight: 500; color: #c8c4bc; line-height: 1.4; flex: 1; }
+  .card-stage { font-size: 10px; color: #3a3a3a; margin-top: 3px; }
+  .card-arr { font-size: 13px; color: #333; flex-shrink: 0; transition: transform .2s; }
+  .icard.open .card-arr { transform: rotate(90deg); }
+  .card-body { overflow: hidden; max-height: 0; transition: max-height .3s ease; }
+  .icard.open .card-body { max-height: 200px; }
+  .card-desc { font-size: 12px; color: #555; line-height: 1.55; padding-top: 10px; border-top: 1px solid #1e1e1e; margin-top: 10px; }
+  .card-bar { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .bar-track { flex: 1; height: 3px; background: #1a1a1a; border-radius: 100px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 100px; }
+
+  /* 07 */
+  .hmw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; }
+  .hmw-item { padding: 0.9rem 0; border-bottom: 1px solid #181818; display: flex; gap: 14px; }
+  .hmw-item:last-child { border-bottom: none; }
+  .hmw-arr { font-size: 13px; color: #3a3a3a; flex-shrink: 0; margin-top: 2px; }
+  .hmw-q { font-size: 14px; font-weight: 500; color: #d0cdc5; line-height: 1.5; margin-bottom: 4px; }
+  .hmw-t { font-size: 12px; color: #555; }
+
+  /* 08 */
+  .refl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .refl-box { background: #111; border-radius: 12px; padding: 30px 34px; }
+  .refl-p { font-size: 14px; line-height: 1.85; color: #666; margin-bottom: 16px; }
+  .refl-p:last-child { margin-bottom: 0; }
+  .quote { font-size: 22px; font-weight: 300; line-height: 1.6; color: #555; font-style: italic; }
+  /* sticky legend */
+  body { padding-bottom: 56px; }
+  .sticky-legend { position: fixed; bottom: 0; left: 0; right: 0; background: #111; border-top: 1px solid #222; padding: 12px 80px; display: flex; align-items: center; gap: 24px; z-index: 100; }
+  .sl-title { font-size: 11px; font-weight: 500; color: #444; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 8px; }
+  .sl-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #888; }
+  .sl-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="port">
+
+  <!-- 01 -->
+  <div class="shell">
+    <div class="sec-num">01</div>
+    <div>
+      <h2>To map and redesign the agent experience for progress drawdown loan processing across the document verification and settlement workflow.</h2>
+      <div class="six-col">
+        <div><div class="mlabel">My role</div><div class="mval">Service Designer</div></div>
+        <div><div class="mlabel">Client</div><div class="mval">Banking sector</div></div>
+        <div><div class="mlabel">Collaborators</div><div class="mval">BPU, Brokers, Agents</div></div>
+        <div><div class="mlabel">Methods</div><div class="mval">Journey mapping</div></div>
+        <div><div class="mlabel">Deliverable</div><div class="mval">As-is journey map</div></div>
+        <div><div class="mlabel">Organisation</div><div class="mval">Gobeyond Partners</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="shell">
+    <div class="sec-num">02</div>
+    <div>
+      <h2>What impact did it create…</h2>
+      <div class="three-col">
+        <div class="impact-block"><div class="pct">5</div><div class="ilabel">Pain points uncovered</div><div class="idesc">Systemic friction agents had normalised across the 6-stage workflow, invisible until mapped.</div></div>
+        <div class="impact-block"><div class="pct">8+</div><div class="ilabel">Design opportunities</div><div class="idesc">Actionable HMW questions reframing each pain point into a concrete design direction.</div></div>
+        <div class="impact-block"><div class="pct">2</div><div class="ilabel">User archetypes mapped</div><div class="idesc">Bank agent and remote client persona across 5 distinct emotional journey phases.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 — fixed -->
+  <div class="shell">
+    <div class="sec-num">03</div>
+    <div>
+      <h2>Let's understand the project goal</h2>
+      <p style="margin-bottom:28px;">Agents handle multiple loan types: Purchase, External Refinance, Internal Refinance, Additional Pay-out, and Equity loans. Each with distinct document requirements.</p>
+      <div class="goal-grid">
+        <div class="goal-col">
+          <div class="col-label">Goals</div>
+          <div class="col-item"><div class="col-dot"></div><div><div class="col-item-title">Surface hidden systemic friction</div><div class="col-item-sub">Identify pain points agents had normalised</div></div></div>
+          <div class="col-item"><div class="col-dot"></div><div><div class="col-item-title">Map current tools and touchpoints</div><div class="col-item-sub">OBP work list, Avaya phones, DVA checklist</div></div></div>
+          <div class="col-item"><div class="col-dot"></div><div><div class="col-item-title">Define redesign opportunities</div><div class="col-item-sub">Translate pain into actionable HMW questions</div></div></div>
+        </div>
+        <div class="goal-col">
+          <div class="col-label">Scope</div>
+          <div class="col-item"><div class="col-dot"></div><div><div class="col-item-title">Document accessing process</div><div class="col-item-sub">Claim → sub-number → DVA checklist</div></div></div>
+          <div class="col-item"><div class="col-dot"></div><div><div class="col-item-title">Validation and settlement</div><div class="col-item-sub">Verify → settle or suspend deal</div></div></div>
+          <div class="col-item"><div class="col-dot"></div><div><div class="col-item-title">Broker and BPU coordination</div><div class="col-item-sub">Missing document outreach via Avaya</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="shell">
+    <div class="sec-num">04</div>
+    <div>
+      <h2>Process flow sketches</h2>
+      <p>Two diagrams mapping the agent workflow: the end-to-end journey and the document verification decision tree.</p>
+      <div class="two-col">
+        <div class="diagram-wrap">
+          <div class="dlabel">01 End-to-end journey</div>
+          <div class="dbox">
+                        <svg width="100%" viewBox="0 0 660 660" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+    <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3a7a32"/>
+    </marker>
+    <marker id="arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8a3a2a"/>
+    </marker>
+    <marker id="arr-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- Phase banners -->
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#444" x="200" y="14" text-anchor="middle" letter-spacing="1">DOCUMENT ACCESSING</text>
+  <line x1="20" y1="20" x2="380" y2="20" stroke="#252525" stroke-width="0.5"/>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#444" x="540" y="14" text-anchor="middle" letter-spacing="1">VALIDATION</text>
+  <line x1="400" y1="20" x2="650" y2="20" stroke="#252525" stroke-width="0.5"/>
+
+  <!-- ROW 1: Claims → Opens sub → Views docs -->
+  <!-- Claims application  x=20 y=34 w=160 h=64 cx=100 cy=66 -->
+  <rect x="20" y="34" width="160" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="100" y="61" text-anchor="middle" dominant-baseline="central">Claims application</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="100" y="81" text-anchor="middle" dominant-baseline="central">Identifies loan type</text>
+
+  <!-- arrow right -->
+  <line x1="180" y1="66" x2="214" y2="66" stroke="#555" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- Opens sub-number  x=216 y=34 w=160 h=64 cx=296 -->
+  <rect x="216" y="34" width="160" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="296" y="61" text-anchor="middle" dominant-baseline="central">Opens sub-number</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="296" y="81" text-anchor="middle" dominant-baseline="central">Reads std comments</text>
+
+  <!-- arrow right -->
+  <line x1="376" y1="66" x2="410" y2="66" stroke="#555" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- Views documents  x=412 y=34 w=160 h=64 cx=492 -->
+  <rect x="412" y="34" width="160" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="492" y="61" text-anchor="middle" dominant-baseline="central">Views documents</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="492" y="81" text-anchor="middle" dominant-baseline="central">DVA checklist</text>
+
+  <!-- arrow down from Views docs → Verifies -->
+  <line x1="492" y1="98" x2="492" y2="152" stroke="#555" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- ROW 2: Deal settled (left) | Verifies & settles (right) -->
+  <!-- Verifies & settles  x=412 y=154 cx=492 cy=186 -->
+  <rect x="412" y="154" width="160" height="64" rx="6" fill="#1c2a3a" stroke="#2a4060" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#8ab0d0" x="492" y="181" text-anchor="middle" dominant-baseline="central">Verifies &amp; settles</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a9a" x="492" y="201" text-anchor="middle" dominant-baseline="central">Loan-type specific</text>
+
+  <!-- Yes branch: line left from Verifies to Deal settled -->
+  <!-- line from left edge of Verifies (412,186) to right edge of Deal settled (396,186) -->
+  <line x1="412" y1="186" x2="398" y2="186" stroke="#3a7a32" stroke-width="1" marker-end="url(#arr-g)"/>
+  <!-- Yes label above the line -->
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#3a7a32" x="405" y="178" text-anchor="middle">Yes</text>
+  <!-- Docs OK? label below the line -->
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#666" x="405" y="200" text-anchor="middle">Docs OK?</text>
+
+  <!-- Deal settled  x=216 y=154 cx=296 cy=186 -->
+  <rect x="216" y="154" width="160" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#7ab07a" x="296" y="181" text-anchor="middle" dominant-baseline="central">Deal settled</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="296" y="201" text-anchor="middle" dominant-baseline="central">Process complete</text>
+
+  <!-- No branch: line down from Verifies -->
+  <line x1="492" y1="218" x2="492" y2="272" stroke="#8a3a2a" stroke-width="1" marker-end="url(#arr-r)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="506" y="248" text-anchor="start">No</text>
+
+  <!-- ROW 3: Calls broker  x=412 y=274 cx=492 -->
+  <rect x="412" y="274" width="160" height="64" rx="6" fill="#201a10" stroke="#3a2a18" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#b08040" x="492" y="301" text-anchor="middle" dominant-baseline="central">Calls broker</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#6a5020" x="492" y="321" text-anchor="middle" dominant-baseline="central">Via Avaya phones</text>
+
+  <!-- Re-upload loop: from left of Calls broker, up to left of Verifies -->
+  <line x1="412" y1="306" x2="370" y2="306" stroke="#3a7a32" stroke-width="1"/>
+  <line x1="370" y1="306" x2="370" y2="186" stroke="#3a7a32" stroke-width="1"/>
+  <line x1="370" y1="186" x2="214" y2="186" stroke="#3a7a32" stroke-width="1" marker-end="url(#arr-g)"/>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#3a7a32" x="370" y="174" text-anchor="middle">Re-upload</text>
+
+  <!-- No doc received: line down from Calls broker -->
+  <line x1="492" y1="338" x2="492" y2="392" stroke="#8a3a2a" stroke-width="1" marker-end="url(#arr-r)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="506" y="368" text-anchor="start">No doc</text>
+
+  <!-- ROW 4: Suspends deal  x=412 y=394 cx=492 -->
+  <rect x="412" y="394" width="160" height="64" rx="6" fill="#200c0c" stroke="#4a1a1a" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c06060" x="492" y="421" text-anchor="middle" dominant-baseline="central">Suspends deal</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a3030" x="492" y="441" text-anchor="middle" dominant-baseline="central">Awaits document</text>
+
+  <!-- Rework dashed loop: down from Suspends, left, up to Calls broker entry -->
+  <path d="M492 458 L492 530 L296 530 L296 338" fill="none" stroke="#444" stroke-width="0.8" stroke-dasharray="6 3" marker-end="url(#arr-d)"/>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#444" x="394" y="546" text-anchor="middle">Rework: doc eventually received</text>
+</svg>
+          </div>
+        </div>
+        <div class="diagram-wrap">
+          <div class="dlabel">02 Verification decision tree</div>
+          <div class="dbox">
+                        <svg width="100%" viewBox="0 0 580 660" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="b-arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+    <marker id="b-arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3a7a32"/>
+    </marker>
+    <marker id="b-arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#8a3a2a"/>
+    </marker>
+  </defs>
+
+  <!-- ROW 1: Document received  cx=290 y=20 -->
+  <rect x="170" y="20" width="240" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="290" y="47" text-anchor="middle" dominant-baseline="central">Document received</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="290" y="67" text-anchor="middle" dominant-baseline="central">Agent opens DVA checklist</text>
+
+  <!-- ↓ -->
+  <line x1="290" y1="84" x2="290" y2="128" stroke="#555" stroke-width="1" marker-end="url(#b-arr)"/>
+
+  <!-- ROW 2: Digitally verified?  cx=290 y=130 -->
+  <rect x="170" y="130" width="240" height="64" rx="6" fill="#1c1c2e" stroke="#2a2a4a" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#9090c0" x="290" y="157" text-anchor="middle" dominant-baseline="central">Digitally verified?</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#5a5a8a" x="290" y="177" text-anchor="middle" dominant-baseline="central">Customer e-sign check</text>
+
+  <!-- Yes → right to Skip manual -->
+  <line x1="410" y1="162" x2="450" y2="162" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#3a7a32" x="430" y="153" text-anchor="middle">Yes</text>
+
+  <!-- Skip manual  x=452 y=130 -->
+  <rect x="452" y="130" width="114" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="12" font-weight="500" fill="#7ab07a" x="509" y="157" text-anchor="middle" dominant-baseline="central">Skip manual</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="509" y="177" text-anchor="middle" dominant-baseline="central">verification</text>
+
+  <!-- Skip manual → down to Forward to settlement -->
+  <line x1="509" y1="194" x2="509" y2="238" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
+
+  <!-- Forward to settlement  x=452 y=240 -->
+  <rect x="452" y="240" width="114" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="12" font-weight="500" fill="#7ab07a" x="509" y="267" text-anchor="middle" dominant-baseline="central">Forward to</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="509" y="287" text-anchor="middle" dominant-baseline="central">settlement</text>
+
+  <!-- No ↓ from Digitally verified -->
+  <line x1="290" y1="194" x2="290" y2="238" stroke="#8a3a2a" stroke-width="1" marker-end="url(#b-arr-r)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="306" y="220" text-anchor="start">No</text>
+
+  <!-- ROW 3: Docs complete?  cx=290 y=240 -->
+  <rect x="170" y="240" width="240" height="64" rx="6" fill="#1e1408" stroke="#3a2808" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c09040" x="290" y="267" text-anchor="middle" dominant-baseline="central">Docs complete?</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a6020" x="290" y="287" text-anchor="middle" dominant-baseline="central">Cross-ref loan type</text>
+
+  <!-- Yes → right to Settle deal -->
+  <line x1="410" y1="272" x2="450" y2="272" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#3a7a32" x="430" y="262" text-anchor="middle">Yes</text>
+
+  <!-- Settle deal  x=452 y=240 overlaps Forward — shift down: y=350 -->
+  <!-- Actually place Settle deal aligned to Docs complete row -->
+  <rect x="452" y="352" width="114" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="12" font-weight="500" fill="#7ab07a" x="509" y="379" text-anchor="middle" dominant-baseline="central">Settle deal</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="509" y="399" text-anchor="middle" dominant-baseline="central">Process complete</text>
+
+  <!-- Yes line adjusted to go right then down to Settle deal -->
+  <!-- Reroute: from right of Docs complete (410,272) → right → down to Settle deal (452,384) -->
+  <!-- Use elbow: right to x=440, down to y=384, left to x=452 -->
+  <polyline points="410,272 440,272 440,384 452,384" fill="none" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
+  <!-- hide old straight line -->
+
+  <!-- No ↓ from Docs complete -->
+  <line x1="290" y1="304" x2="290" y2="348" stroke="#8a3a2a" stroke-width="1" marker-end="url(#b-arr-r)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="155" y="330" text-anchor="end">No</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#666" x="155" y="346" text-anchor="end">docs missing</text>
+
+  <!-- ROW 4: Call broker / client  cx=290 y=350 -->
+  <rect x="170" y="350" width="240" height="64" rx="6" fill="#201a10" stroke="#3a2808" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c09040" x="290" y="377" text-anchor="middle" dominant-baseline="central">Call broker / client</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a6020" x="290" y="397" text-anchor="middle" dominant-baseline="central">Via Avaya phones</text>
+
+  <!-- Re-uploaded loop: left from Call broker, up to Docs complete left side -->
+  <line x1="170" y1="382" x2="130" y2="382" stroke="#3a7a32" stroke-width="1"/>
+  <line x1="130" y1="382" x2="130" y2="272" stroke="#3a7a32" stroke-width="1"/>
+  <line x1="130" y1="272" x2="168" y2="272" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#3a7a32" x="118" y="330" text-anchor="end">Re-uploaded</text>
+
+  <!-- Not received ↓ -->
+  <line x1="290" y1="414" x2="290" y2="458" stroke="#8a3a2a" stroke-width="1" marker-end="url(#b-arr-r)"/>
+  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="155" y="440" text-anchor="end">Not received</text>
+
+  <!-- ROW 5: Suspend deal  cx=290 y=460 -->
+  <rect x="170" y="460" width="240" height="64" rx="6" fill="#200c0c" stroke="#4a1818" stroke-width="1"/>
+  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c06060" x="290" y="487" text-anchor="middle" dominant-baseline="central">Suspend deal</text>
+  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a3030" x="290" y="507" text-anchor="middle" dominant-baseline="central">Awaits document</text>
+</svg>
+          </div>
+        </div>
+      </div>
+      <!-- shared legend below both diagrams -->
+      <div style="display:flex;align-items:center;gap:24px;margin-top:16px;padding:12px 16px;background:#111;border-radius:8px;">
+        <span style="font-size:11px;font-weight:500;color:#444;letter-spacing:0.06em;text-transform:uppercase;">Legend</span>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#1a1a1a;border:1px solid #333;flex-shrink:0;"></div>Standard step</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#1c2430;border:1px solid #2a3a4a;flex-shrink:0;"></div>Verify</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#162016;border:1px solid #2a3a2a;flex-shrink:0;"></div>Settled</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#201a10;border:1px solid #3a2a1a;flex-shrink:0;"></div>Friction</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#200c0c;border:1px solid #4a1a1a;flex-shrink:0;"></div>Suspension</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;margin-left:8px;"><div style="width:28px;border-top:1px dashed #555;"></div>Rework loop</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="shell">
+    <div class="sec-num">05</div>
+    <div>
+      <h2>How does the agent journey flow…</h2>
+      <p style="max-width:100%;white-space:nowrap;">Six stages across two phases. The final two represent the highest-friction rework loop.</p>
+      <div class="tools-row">
+        <span class="tag">OBP Work List</span>
+        <span class="tag">OBP Application Tracker</span>
+        <span class="tag">Avaya Phones</span>
+        <span class="tag">DVA Checklist</span>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-item"><span class="flow-n">1.</span><div style="flex:1"><div class="flow-title">Agent claims the application</div><div class="flow-sub">Identifies loan type: Purchase, Refinance, Additional Pay-out, or Equity loan</div></div><span class="tool-chip">OBP Work List</span></div>
+        <div class="flow-item"><span class="flow-n">2.</span><div style="flex:1"><div class="flow-title">Opens the sub-number</div><div class="flow-sub">Reads standard comments and adds comments per procedure via OBP Application Tracker</div></div><span class="tool-chip">OBP App Tracker</span></div>
+        <div class="flow-item"><span class="flow-n">3.</span><div style="flex:1"><div class="flow-title">Views all required documents</div><div class="flow-sub">DVA checklist: Outstanding Summary, Application, Product, Collateral, Config, Documents, Manual Checklist</div></div><span class="tool-chip">OBP Work List</span></div>
+        <div class="flow-item"><span class="flow-n">4.</span><div style="flex:1"><div class="flow-title">Verifies documents and settles the deal</div><div class="flow-sub">Verification varies by loan type. Document requirements differ across loan categories</div></div><span class="tool-chip">OBP Work List</span></div>
+        <div class="flow-item"><span class="flow-n">5.</span><div style="flex:1"><div class="flow-title">Calls brokers and lenders if document is missing</div><div class="flow-sub">Manual phone outreach via Avaya. Agent requests client re-upload</div></div><span class="tool-chip">Avaya Phones</span></div>
+        <div class="flow-item"><span class="flow-n">6.</span><div style="flex:1"><div class="flow-title">Suspends the deal if no document is received</div><div class="flow-sub">Deal enters rework loop. Re-processed from start once document eventually arrives</div></div><span class="tool-chip">OBP Work List</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="shell">
+    <div class="sec-num">06</div>
+    <div>
+      <h2>What friction did agents experience…</h2>
+      <div class="friction-layout">
+        <div>
+          <p style="margin-bottom:20px;">Click any card to expand. Filter by type.</p>
+          <div class="summary-row">
+            <div><div class="sval" id="cnt-pain">5</div><div class="slbl">Pain points</div></div>
+            <div class="sdiv"></div>
+            <div><div class="sval" id="cnt-delight">5</div><div class="slbl">Delighters</div></div>
+            <div class="sdiv"></div>
+            <div><div class="sval" id="cnt-vis">10</div><div class="slbl">Showing</div></div>
+          </div>
+          <div class="filter-col">
+            <button class="fbtn a-all" onclick="doFilter('all',this)">All</button>
+            <button class="fbtn" onclick="doFilter('pain',this)">Pain points</button>
+            <button class="fbtn" onclick="doFilter('delight',this)">Delighters</button>
+          </div>
+        </div>
+        <div class="cards-grid" id="cgrid">
+          <div class="icard" data-t="pain" onclick="tog(this)"><div class="card-top"><div class="card-dot pain"></div><div style="flex:1"><div class="card-title">Application task hijacking</div><div class="card-stage">Stage 1 · Claims application</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Other agents claim tasks assigned to you, creating confusion over ownership in the OBP Work List.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Severity</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#8a3318"></div></div></div></div></div>
+          <div class="icard" data-t="delight" onclick="tog(this)"><div class="card-top"><div class="card-dot delight"></div><div style="flex:1"><div class="card-title">Priority-based case ordering</div><div class="card-stage">Stage 1 · Claims application</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Urgent cases surface at the top of the work list, helping agents avoid penalties.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Value</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#3a5c12"></div></div></div></div></div>
+          <div class="icard" data-t="pain" onclick="tog(this)"><div class="card-top"><div class="card-dot pain"></div><div style="flex:1"><div class="card-title">Comment cross-contamination</div><div class="card-stage">Stage 2 · Opens sub-number</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Standard comments get misplaced between two applications, corrupting the case history.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Severity</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:#8a3318"></div></div></div></div></div>
+          <div class="icard" data-t="delight" onclick="tog(this)"><div class="card-top"><div class="card-dot delight"></div><div style="flex:1"><div class="card-title">Submission notes shortcut</div><div class="card-stage">Stage 2 · Opens sub-number</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Agents can check submission notes instead of re-reading the entire case file for rework applications.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Value</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:#3a5c12"></div></div></div></div></div>
+          <div class="icard" data-t="pain" onclick="tog(this)"><div class="card-top"><div class="card-dot pain"></div><div style="flex:1"><div class="card-title">Silent re-uploads</div><div class="card-stage">Stage 3 · Views documents</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">When clients re-upload missing documents the bot does not notify the agent. Agents must manually check.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Severity</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:#8a3318"></div></div></div></div></div>
+          <div class="icard" data-t="delight" onclick="tog(this)"><div class="card-top"><div class="card-dot delight"></div><div style="flex:1"><div class="card-title">Excel-ready document data</div><div class="card-stage">Stage 3 · Views documents</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Document details are pre-formatted in Excel. Agents only need to compare and verify.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Value</span><div class="bar-track"><div class="bar-fill" style="width:75%;background:#3a5c12"></div></div></div></div></div>
+          <div class="icard" data-t="pain" onclick="tog(this)"><div class="card-top"><div class="card-dot pain"></div><div style="flex:1"><div class="card-title">BPU–broker misalignment</div><div class="card-stage">Stage 4 · Verifies &amp; settles</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Discrepancies between broker and BPU uploads cause validation failures, forcing agents to reconcile versions.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Severity</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:#8a3318"></div></div></div></div></div>
+          <div class="icard" data-t="delight" onclick="tog(this)"><div class="card-top"><div class="card-dot delight"></div><div style="flex:1"><div class="card-title">Digital verification bypass</div><div class="card-stage">Stage 4 · Verifies &amp; settles</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">When a customer digitally signs, the agent is exempt from manual verification entirely.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Value</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:#3a5c12"></div></div></div></div></div>
+          <div class="icard" data-t="pain" onclick="tog(this)"><div class="card-top"><div class="card-dot pain"></div><div style="flex:1"><div class="card-title">Deal suspension rework loop</div><div class="card-stage">Stage 6 · Suspends deal</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">Every suspended deal requires full re-processing. There is no shortcut back to where the case left off.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Severity</span><div class="bar-track"><div class="bar-fill" style="width:95%;background:#8a3318"></div></div></div></div></div>
+          <div class="icard" data-t="delight" onclick="tog(this)"><div class="card-top"><div class="card-dot delight"></div><div style="flex:1"><div class="card-title">Timely BPU uploads</div><div class="card-stage">Stage 5 · Calls broker</div></div><span class="card-arr">›</span></div><div class="card-body"><div class="card-desc">When BPU uploads on time, agents avoid the outreach cycle entirely. Cases flow straight to settlement.</div><div class="card-bar"><span style="font-size:10px;color:#3a3a3a;min-width:50px">Value</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:#3a5c12"></div></div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="shell">
+    <div class="sec-num">07</div>
+    <div>
+      <h2>What design opportunities did we surface…</h2>
+      <p>Each pain point was reframed as a "How might we" question to open up the solution space for the to-be design phase.</p>
+      <div class="hmw-grid">
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">How might we prevent other agents from claiming an application not assigned to them?</div><div class="hmw-t">Stage 1 · Application ownership conflict</div></div></div>
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">How might we build a feedback mechanism that monitors agent actions and reduces error rates?</div><div class="hmw-t">Stage 2 · Comment cross-contamination</div></div></div>
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">How might we send real-time notifications to agents when clients re-upload missing documents?</div><div class="hmw-t">Stage 3 · Silent re-upload gap</div></div></div>
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">How might we eliminate manual verification mode for digitally submitted documents?</div><div class="hmw-t">Stage 4 · Manual verification overhead</div></div></div>
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">Can we notify clients automatically about missing documents rather than relying on phone calls?</div><div class="hmw-t">Stage 5 · Avaya phone outreach</div></div></div>
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">How might we reduce deal suspensions and empower agents to initiate settlement themselves?</div><div class="hmw-t">Stage 6 · Deal suspension rework loop</div></div></div>
+        <div class="hmw-item"><span class="hmw-arr">↳</span><div><div class="hmw-q">Can agents initiate the full settlement process themselves, reducing handoff dependency?</div><div class="hmw-t">Cross-team settlement bottlenecks</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="shell-last">
+    <div class="sec-num">08</div>
+    <div>
+      <h2>What did I learn from this project…</h2>
+      <div class="refl-grid">
+        <div class="refl-box">
+          <p class="refl-p">This project reinforced how powerful the as-is journey map is for surfacing operational blindspots. The pain points, particularly around application ownership and silent re-uploads, were friction that agents had normalised, invisible to stakeholders until mapped in detail.</p>
+          <p class="refl-p">The dual-track structure of mapping current versus potential experience in parallel helped align stakeholders quickly, giving them an immediate visual contrast between what exists and what's possible.</p>
+          <p class="refl-p">Working across agents, brokers, and BPU teams taught me that friction almost always lives between teams, not within them.</p>
+        </div>
+        <div style="display:flex;align-items:center;">
+          <p class="quote">"Designing for complex workflows isn't about adding more. It's about removing the unnecessary so critical decisions become simple, reliable, and confident."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function tog(card) {
+  var open = card.classList.contains('open');
+  document.querySelectorAll('.icard.open').forEach(function(c) { c.classList.remove('open'); });
+  if (!open) card.classList.add('open');
+}
+function doFilter(type, btn) {
+  document.querySelectorAll('.fbtn').forEach(function(b) { b.className = 'fbtn'; });
+  btn.classList.add('a-' + type);
+  var vis = 0;
+  document.querySelectorAll('.icard').forEach(function(c) {
+    if (type === 'all' || c.dataset.t === type) { c.classList.remove('hidden'); vis++; }
+    else { c.classList.add('hidden'); c.classList.remove('open'); }
+  });
+  document.getElementById('cnt-vis').textContent = vis;
+}
+</script>
+
+</body>
+</html>
