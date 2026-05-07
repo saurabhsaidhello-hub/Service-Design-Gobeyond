@@ -48,6 +48,42 @@
   .dbox { background: #111; border-radius: 12px; padding: 22px 14px; flex: 1; }
   .dbox svg { display: block; width: 100%; }
 
+  .fb { border-radius: 8px; padding: 12px 14px; border: 1px solid #333; }
+  .ft { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 500; color: #c8c4bc; text-align: center; margin-bottom: 3px; }
+  .fs { font-family: 'Roboto', sans-serif; font-size: 11px; color: #555; text-align: center; }
+  .fb-std { background: #1e1e1e; border-color: #333; }
+  .fb-ver { background: #1c2a3a; border-color: #2a4060; } .fb-ver .ft { color: #8ab0d0; }
+  .fb-set { background: #162016; border-color: #2a3a2a; } .fb-set .ft { color: #7ab07a; } .fb-set .fs { color: #4a7a4a; }
+  .fb-fri { background: #201a10; border-color: #3a2808; } .fb-fri .ft { color: #c09040; } .fb-fri .fs { color: #7a6020; }
+  .fb-sus { background: #200c0c; border-color: #4a1818; } .fb-sus .ft { color: #c06060; } .fb-sus .fs { color: #7a3030; }
+  .fc { font-size: 18px; color: #555; padding: 0 10px; flex-shrink: 0; }
+  .arrow-down { display:flex; flex-direction:column; align-items:center; margin: 6px auto; width:fit-content; }
+  .arrow-down::before { content:''; display:block; width:1px; height:24px; background:#555; }
+  .arrow-down::after { content:''; display:block; width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:8px solid #555; }
+  .arrow-down-red { display:flex; flex-direction:column; align-items:center; margin: 6px auto; width:fit-content; }
+  .arrow-down-red::before { content:''; display:block; width:1px; height:24px; background:#c06040; }
+  .arrow-down-red::after { content:''; display:block; width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:8px solid #c06040; }
+  .arrow-label-red { font-size: 11px; color: #c06040; margin-bottom: 3px; }
+
+
+  .fbox { border-radius: 8px; padding: 12px 14px; border: 1px solid #333; }
+  .fbox-title { font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 500; color: #c8c4bc; margin-bottom: 3px; text-align: center; }
+  .fbox-sub { font-family: 'Roboto', sans-serif; font-size: 11px; color: #555; text-align: center; }
+  .fbox-std { background: #1e1e1e; border-color: #333; }
+  .fbox-verify { background: #1c2a3a; border-color: #2a4060; }
+  .fbox-verify .fbox-title { color: #8ab0d0; }
+  .fbox-settled { background: #162016; border-color: #2a3a2a; }
+  .fbox-settled .fbox-title { color: #7ab07a; }
+  .fbox-settled .fbox-sub { color: #4a7a4a; }
+  .fbox-friction { background: #201a10; border-color: #3a2808; }
+  .fbox-friction .fbox-title { color: #c09040; }
+  .fbox-friction .fbox-sub { color: #7a6020; }
+  .fbox-suspension { background: #200c0c; border-color: #4a1818; }
+  .fbox-suspension .fbox-title { color: #c06060; }
+  .fbox-suspension .fbox-sub { color: #7a3030; }
+  .farrow { font-size: 18px; color: #555; padding: 0 8px; }
+
+
   /* 05 */
   .flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; }
   .flow-item { display: flex; gap: 18px; align-items: flex-start; padding: 0.85rem 0; border-bottom: 1px solid #181818; }
@@ -112,6 +148,7 @@
   .sl-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #888; }
   .sl-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
 </style>
+
 </head>
 <body>
 <div class="port">
@@ -175,204 +212,137 @@
       <h2>Process flow sketches</h2>
       <p>Two diagrams mapping the agent workflow: the end-to-end journey and the document verification decision tree.</p>
       <div class="two-col">
+        
         <div class="diagram-wrap">
-          <div class="dlabel">01 End-to-end journey</div>
-          <div class="dbox">
-                        <svg width="100%" viewBox="0 0 660 660" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
-    </marker>
-    <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#3a7a32"/>
-    </marker>
-    <marker id="arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#8a3a2a"/>
-    </marker>
-    <marker id="arr-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#444"/>
-    </marker>
-  </defs>
+          <div class="dlabel">01 — End-to-end journey</div>
+          <div class="dbox" style="padding:32px 24px;">
 
-  <!-- Phase banners -->
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#444" x="200" y="14" text-anchor="middle" letter-spacing="1">DOCUMENT ACCESSING</text>
-  <line x1="20" y1="20" x2="380" y2="20" stroke="#252525" stroke-width="0.5"/>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#444" x="540" y="14" text-anchor="middle" letter-spacing="1">VALIDATION</text>
-  <line x1="400" y1="20" x2="650" y2="20" stroke="#252525" stroke-width="0.5"/>
+            <!-- Phase labels -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:16px;">
+              <div style="font-size:10px;letter-spacing:1.5px;color:#555;text-align:center;padding-bottom:8px;border-bottom:1px solid #252525;">DOCUMENT ACCESSING</div>
+              <div style="font-size:10px;letter-spacing:1.5px;color:#555;text-align:center;padding-bottom:8px;border-bottom:1px solid #252525;">VALIDATION &amp; SETTLEMENT</div>
+            </div>
 
-  <!-- ROW 1: Claims → Opens sub → Views docs -->
-  <!-- Claims application  x=20 y=34 w=160 h=64 cx=100 cy=66 -->
-  <rect x="20" y="34" width="160" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="100" y="61" text-anchor="middle" dominant-baseline="central">Claims application</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="100" y="81" text-anchor="middle" dominant-baseline="central">Identifies loan type</text>
+            <!-- Row 1: 3 boxes + arrows -->
+            <div style="display:flex;align-items:center;gap:0;margin-bottom:48px;">
+              <div class="fb fb-std" style="flex:1;"><div class="ft">Claims application</div><div class="fs">Identifies loan type</div></div>
+              <div class="fc">&#8594;</div>
+              <div class="fb fb-std" style="flex:1;"><div class="ft">Opens sub-number</div><div class="fs">Reads std comments</div></div>
+              <div class="fc">&#8594;</div>
+              <div class="fb fb-ver" style="flex:1;"><div class="ft">Views documents</div><div class="fs">DVA checklist</div></div>
+            </div>
 
-  <!-- arrow right -->
-  <line x1="180" y1="66" x2="214" y2="66" stroke="#555" stroke-width="1" marker-end="url(#arr)"/>
+            <!-- Row 2: vertical arrow + branch row -->
+            <div style="display:flex;align-items:flex-start;gap:0;margin-bottom:16px;">
+              <!-- Left empty space -->
+              <div style="flex:2;"></div>
+              <!-- Arrow down centred on Views docs -->
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                <div style="width:1px;height:32px;background:#555;margin-bottom:0;"></div>
+                <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #555;"></div>
+              </div>
+            </div>
 
-  <!-- Opens sub-number  x=216 y=34 w=160 h=64 cx=296 -->
-  <rect x="216" y="34" width="160" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="296" y="61" text-anchor="middle" dominant-baseline="central">Opens sub-number</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="296" y="81" text-anchor="middle" dominant-baseline="central">Reads std comments</text>
+            <!-- Row 3: Deal settled | connector | Verifies -->
+            <div style="display:flex;align-items:center;gap:0;margin-bottom:16px;">
+              <div class="fb fb-set" style="flex:1;"><div class="ft">Deal settled</div><div class="fs">Process complete</div></div>
+              <div style="display:flex;flex-direction:column;align-items:center;padding:0 8px;">
+                <div style="font-size:11px;color:#4a9a42;margin-bottom:3px;">Yes</div>
+                <div style="width:40px;height:1px;background:#4a9a42;"></div>
+              </div>
+              <div class="fb fb-ver" style="flex:1;"><div class="ft">Verifies &amp; settles</div><div class="fs">Loan-type specific</div></div>
+              <div style="flex:2;"></div>
+            </div>
 
-  <!-- arrow right -->
-  <line x1="376" y1="66" x2="410" y2="66" stroke="#555" stroke-width="1" marker-end="url(#arr)"/>
+            <!-- No arrow down -->
+            <div style="display:flex;align-items:flex-start;gap:0;margin-bottom:16px;">
+              <div style="flex:3;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                <div style="font-size:11px;color:#c06040;margin-bottom:3px;">No</div>
+                <div style="width:1px;height:24px;background:#c06040;"></div>
+                <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #c06040;"></div>
+              </div>
+              <div style="flex:2;"></div>
+            </div>
 
-  <!-- Views documents  x=412 y=34 w=160 h=64 cx=492 -->
-  <rect x="412" y="34" width="160" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="492" y="61" text-anchor="middle" dominant-baseline="central">Views documents</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="492" y="81" text-anchor="middle" dominant-baseline="central">DVA checklist</text>
+            <!-- Row 4: Calls broker -->
+            <div style="display:flex;align-items:center;gap:0;margin-bottom:8px;">
+              <div style="flex:2;"></div>
+              <div class="fb fb-fri" style="flex:1;"><div class="ft">Calls broker</div><div class="fs">Via Avaya phones</div></div>
+              <div style="flex:2;display:flex;align-items:center;padding-left:8px;">
+                <div style="font-size:11px;color:#4a9a42;white-space:nowrap;">&#8592; Re-upload (loops back to Verifies)</div>
+              </div>
+            </div>
 
-  <!-- arrow down from Views docs → Verifies -->
-  <line x1="492" y1="98" x2="492" y2="152" stroke="#555" stroke-width="1" marker-end="url(#arr)"/>
+            <!-- No doc arrow down -->
+            <div style="display:flex;margin-bottom:16px;">
+              <div style="flex:2;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+                <div style="font-size:11px;color:#c06040;margin-bottom:3px;">No doc received</div>
+                <div style="width:1px;height:24px;background:#c06040;"></div>
+                <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #c06040;"></div>
+              </div>
+              <div style="flex:2;"></div>
+            </div>
 
-  <!-- ROW 2: Deal settled (left) | Verifies & settles (right) -->
-  <!-- Verifies & settles  x=412 y=154 cx=492 cy=186 -->
-  <rect x="412" y="154" width="160" height="64" rx="6" fill="#1c2a3a" stroke="#2a4060" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#8ab0d0" x="492" y="181" text-anchor="middle" dominant-baseline="central">Verifies &amp; settles</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a9a" x="492" y="201" text-anchor="middle" dominant-baseline="central">Loan-type specific</text>
+            <!-- Row 5: Suspends deal -->
+            <div style="display:flex;align-items:center;gap:0;margin-bottom:24px;">
+              <div style="flex:2;"></div>
+              <div class="fb fb-sus" style="flex:1;"><div class="ft">Suspends deal</div><div class="fs">Awaits document</div></div>
+              <div style="flex:2;"></div>
+            </div>
 
-  <!-- Yes branch: line left from Verifies to Deal settled -->
-  <!-- line from left edge of Verifies (412,186) to right edge of Deal settled (396,186) -->
-  <line x1="412" y1="186" x2="398" y2="186" stroke="#3a7a32" stroke-width="1" marker-end="url(#arr-g)"/>
-  <!-- Yes label above the line -->
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#3a7a32" x="405" y="178" text-anchor="middle">Yes</text>
-  <!-- Docs OK? label below the line -->
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#666" x="405" y="200" text-anchor="middle">Docs OK?</text>
-
-  <!-- Deal settled  x=216 y=154 cx=296 cy=186 -->
-  <rect x="216" y="154" width="160" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#7ab07a" x="296" y="181" text-anchor="middle" dominant-baseline="central">Deal settled</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="296" y="201" text-anchor="middle" dominant-baseline="central">Process complete</text>
-
-  <!-- No branch: line down from Verifies -->
-  <line x1="492" y1="218" x2="492" y2="272" stroke="#8a3a2a" stroke-width="1" marker-end="url(#arr-r)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="506" y="248" text-anchor="start">No</text>
-
-  <!-- ROW 3: Calls broker  x=412 y=274 cx=492 -->
-  <rect x="412" y="274" width="160" height="64" rx="6" fill="#201a10" stroke="#3a2a18" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#b08040" x="492" y="301" text-anchor="middle" dominant-baseline="central">Calls broker</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#6a5020" x="492" y="321" text-anchor="middle" dominant-baseline="central">Via Avaya phones</text>
-
-  <!-- Re-upload loop: from left of Calls broker, up to left of Verifies -->
-  <line x1="412" y1="306" x2="370" y2="306" stroke="#3a7a32" stroke-width="1"/>
-  <line x1="370" y1="306" x2="370" y2="186" stroke="#3a7a32" stroke-width="1"/>
-  <line x1="370" y1="186" x2="214" y2="186" stroke="#3a7a32" stroke-width="1" marker-end="url(#arr-g)"/>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#3a7a32" x="370" y="174" text-anchor="middle">Re-upload</text>
-
-  <!-- No doc received: line down from Calls broker -->
-  <line x1="492" y1="338" x2="492" y2="392" stroke="#8a3a2a" stroke-width="1" marker-end="url(#arr-r)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="506" y="368" text-anchor="start">No doc</text>
-
-  <!-- ROW 4: Suspends deal  x=412 y=394 cx=492 -->
-  <rect x="412" y="394" width="160" height="64" rx="6" fill="#200c0c" stroke="#4a1a1a" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c06060" x="492" y="421" text-anchor="middle" dominant-baseline="central">Suspends deal</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a3030" x="492" y="441" text-anchor="middle" dominant-baseline="central">Awaits document</text>
-
-  <!-- Rework dashed loop: down from Suspends, left, up to Calls broker entry -->
-  <path d="M492 458 L492 530 L296 530 L296 338" fill="none" stroke="#444" stroke-width="0.8" stroke-dasharray="6 3" marker-end="url(#arr-d)"/>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#444" x="394" y="546" text-anchor="middle">Rework: doc eventually received</text>
-</svg>
+            <div style="font-size:11px;color:#555;text-align:center;font-style:italic;border-top:1px dashed #333;padding-top:12px;">
+              &#8635; Rework loop: once document is received, case re-enters from Calls broker stage
+            </div>
           </div>
         </div>
+
         <div class="diagram-wrap">
-          <div class="dlabel">02 Verification decision tree</div>
-          <div class="dbox">
-                        <svg width="100%" viewBox="0 0 580 660" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="b-arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
-    </marker>
-    <marker id="b-arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#3a7a32"/>
-    </marker>
-    <marker id="b-arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#8a3a2a"/>
-    </marker>
-  </defs>
+          <div class="dlabel">02 — Verification decision tree</div>
+          <div class="dbox" style="padding:32px 24px;">
 
-  <!-- ROW 1: Document received  cx=290 y=20 -->
-  <rect x="170" y="20" width="240" height="64" rx="6" fill="#1a1a1a" stroke="#303030" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c8c4bc" x="290" y="47" text-anchor="middle" dominant-baseline="central">Document received</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#555" x="290" y="67" text-anchor="middle" dominant-baseline="central">Agent opens DVA checklist</text>
+            <!-- Step 1 -->
+            <div style="display:flex;justify-content:center;margin-bottom:0;">
+              <div class="fb fb-std" style="width:220px;"><div class="ft">Document received</div><div class="fs">Agent opens DVA checklist</div></div>
+            </div>
+            <div class="arrow-down"></div>
 
-  <!-- ↓ -->
-  <line x1="290" y1="84" x2="290" y2="128" stroke="#555" stroke-width="1" marker-end="url(#b-arr)"/>
+            <!-- Step 2: Digitally verified -->
+            <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:0;">
+              <div class="fb fb-ver" style="width:220px;"><div class="ft">Digitally verified?</div><div class="fs">Customer e-sign check</div></div>
+              <div style="display:flex;align-items:center;padding:0 10px;">
+                <div style="font-size:11px;color:#4a9a42;margin-right:6px;">Yes &#8594;</div>
+                <div class="fb fb-set" style="width:150px;"><div class="ft">Skip manual</div><div class="fs">verification</div></div>
+              </div>
+            </div>
+            <div class="arrow-down-red"><div class="arrow-label-red">No</div></div>
 
-  <!-- ROW 2: Digitally verified?  cx=290 y=130 -->
-  <rect x="170" y="130" width="240" height="64" rx="6" fill="#1c1c2e" stroke="#2a2a4a" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#9090c0" x="290" y="157" text-anchor="middle" dominant-baseline="central">Digitally verified?</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#5a5a8a" x="290" y="177" text-anchor="middle" dominant-baseline="central">Customer e-sign check</text>
+            <!-- Step 3: Docs complete -->
+            <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:0;">
+              <div class="fb fb-fri" style="width:220px;"><div class="ft">Docs complete?</div><div class="fs">Cross-ref loan type</div></div>
+              <div style="display:flex;align-items:center;padding:0 10px;">
+                <div style="font-size:11px;color:#4a9a42;margin-right:6px;">Yes &#8594;</div>
+                <div class="fb fb-set" style="width:150px;"><div class="ft">Settle deal</div><div class="fs">Process complete</div></div>
+              </div>
+            </div>
+            <div class="arrow-down-red"><div class="arrow-label-red">No — docs missing</div></div>
 
-  <!-- Yes → right to Skip manual -->
-  <line x1="410" y1="162" x2="450" y2="162" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#3a7a32" x="430" y="153" text-anchor="middle">Yes</text>
+            <!-- Step 4: Call broker -->
+            <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:0;">
+              <div class="fb fb-fri" style="width:220px;"><div class="ft">Call broker / client</div><div class="fs">Via Avaya phones</div></div>
+              <div style="padding:0 10px;font-size:11px;color:#4a9a42;">&#8592; Re-uploaded (loops to Docs complete)</div>
+            </div>
+            <div class="arrow-down-red"><div class="arrow-label-red">Not received</div></div>
 
-  <!-- Skip manual  x=452 y=130 -->
-  <rect x="452" y="130" width="114" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="12" font-weight="500" fill="#7ab07a" x="509" y="157" text-anchor="middle" dominant-baseline="central">Skip manual</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="509" y="177" text-anchor="middle" dominant-baseline="central">verification</text>
+            <!-- Step 5: Suspend deal -->
+            <div style="display:flex;justify-content:center;">
+              <div class="fb fb-sus" style="width:220px;"><div class="ft">Suspend deal</div><div class="fs">Awaits document</div></div>
+            </div>
 
-  <!-- Skip manual → down to Forward to settlement -->
-  <line x1="509" y1="194" x2="509" y2="238" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
-
-  <!-- Forward to settlement  x=452 y=240 -->
-  <rect x="452" y="240" width="114" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="12" font-weight="500" fill="#7ab07a" x="509" y="267" text-anchor="middle" dominant-baseline="central">Forward to</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="509" y="287" text-anchor="middle" dominant-baseline="central">settlement</text>
-
-  <!-- No ↓ from Digitally verified -->
-  <line x1="290" y1="194" x2="290" y2="238" stroke="#8a3a2a" stroke-width="1" marker-end="url(#b-arr-r)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="306" y="220" text-anchor="start">No</text>
-
-  <!-- ROW 3: Docs complete?  cx=290 y=240 -->
-  <rect x="170" y="240" width="240" height="64" rx="6" fill="#1e1408" stroke="#3a2808" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c09040" x="290" y="267" text-anchor="middle" dominant-baseline="central">Docs complete?</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a6020" x="290" y="287" text-anchor="middle" dominant-baseline="central">Cross-ref loan type</text>
-
-  <!-- Yes → right to Settle deal -->
-  <line x1="410" y1="272" x2="450" y2="272" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#3a7a32" x="430" y="262" text-anchor="middle">Yes</text>
-
-  <!-- Settle deal  x=452 y=240 overlaps Forward — shift down: y=350 -->
-  <!-- Actually place Settle deal aligned to Docs complete row -->
-  <rect x="452" y="352" width="114" height="64" rx="6" fill="#162016" stroke="#2a3a2a" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="12" font-weight="500" fill="#7ab07a" x="509" y="379" text-anchor="middle" dominant-baseline="central">Settle deal</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#4a7a4a" x="509" y="399" text-anchor="middle" dominant-baseline="central">Process complete</text>
-
-  <!-- Yes line adjusted to go right then down to Settle deal -->
-  <!-- Reroute: from right of Docs complete (410,272) → right → down to Settle deal (452,384) -->
-  <!-- Use elbow: right to x=440, down to y=384, left to x=452 -->
-  <polyline points="410,272 440,272 440,384 452,384" fill="none" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
-  <!-- hide old straight line -->
-
-  <!-- No ↓ from Docs complete -->
-  <line x1="290" y1="304" x2="290" y2="348" stroke="#8a3a2a" stroke-width="1" marker-end="url(#b-arr-r)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="155" y="330" text-anchor="end">No</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#666" x="155" y="346" text-anchor="end">docs missing</text>
-
-  <!-- ROW 4: Call broker / client  cx=290 y=350 -->
-  <rect x="170" y="350" width="240" height="64" rx="6" fill="#201a10" stroke="#3a2808" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c09040" x="290" y="377" text-anchor="middle" dominant-baseline="central">Call broker / client</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a6020" x="290" y="397" text-anchor="middle" dominant-baseline="central">Via Avaya phones</text>
-
-  <!-- Re-uploaded loop: left from Call broker, up to Docs complete left side -->
-  <line x1="170" y1="382" x2="130" y2="382" stroke="#3a7a32" stroke-width="1"/>
-  <line x1="130" y1="382" x2="130" y2="272" stroke="#3a7a32" stroke-width="1"/>
-  <line x1="130" y1="272" x2="168" y2="272" stroke="#3a7a32" stroke-width="1" marker-end="url(#b-arr-g)"/>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#3a7a32" x="118" y="330" text-anchor="end">Re-uploaded</text>
-
-  <!-- Not received ↓ -->
-  <line x1="290" y1="414" x2="290" y2="458" stroke="#8a3a2a" stroke-width="1" marker-end="url(#b-arr-r)"/>
-  <text font-family="Roboto,sans-serif" font-size="12" fill="#8a3a2a" x="155" y="440" text-anchor="end">Not received</text>
-
-  <!-- ROW 5: Suspend deal  cx=290 y=460 -->
-  <rect x="170" y="460" width="240" height="64" rx="6" fill="#200c0c" stroke="#4a1818" stroke-width="1"/>
-  <text font-family="Roboto,sans-serif" font-size="13" font-weight="500" fill="#c06060" x="290" y="487" text-anchor="middle" dominant-baseline="central">Suspend deal</text>
-  <text font-family="Roboto,sans-serif" font-size="11" fill="#7a3030" x="290" y="507" text-anchor="middle" dominant-baseline="central">Awaits document</text>
-</svg>
           </div>
         </div>
-      </div>
+
       <!-- shared legend below both diagrams -->
       <div style="display:flex;align-items:center;gap:24px;margin-top:16px;padding:12px 16px;background:#111;border-radius:8px;">
         <span style="font-size:11px;font-weight:500;color:#444;letter-spacing:0.06em;text-transform:uppercase;">Legend</span>
@@ -383,8 +353,9 @@
         <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#200c0c;border:1px solid #4a1a1a;flex-shrink:0;"></div>Suspension</div>
         <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;margin-left:8px;"><div style="width:28px;border-top:1px dashed #555;"></div>Rework loop</div>
       </div>
-    </div>
-  </div>
+      </div><!-- close two-col -->
+    </div><!-- close section content -->
+  </div><!-- close shell -->
 
   <!-- 05 -->
   <div class="shell">
@@ -481,6 +452,7 @@
       </div>
     </div>
   </div>
+
 
 </div>
 
