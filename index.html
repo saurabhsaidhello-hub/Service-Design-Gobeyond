@@ -147,6 +147,78 @@
   .sl-title { font-size: 11px; font-weight: 500; color: #444; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 8px; }
   .sl-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #888; }
   .sl-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  /* ── Table ── */
+  .bp09 .bp { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .bp09 .bp colgroup col:first-child { width: 120px; }
+
+  /* Column headers */
+  .bp09 .bp thead th { padding: 14px 10px; text-align: center; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #555; background: #111; border-bottom: 2px solid #1e1e1e; border-right: 1px solid #181818; }
+  .bp09 .bp thead th:first-child { background: #0c0c0c; border-right: 1px solid #1e1e1e; }
+  .bp09 .bp thead th:last-child { border-right: none; }
+
+  /* Row label column */
+  .bp09 .lbl { background: #0c0c0c !important; border-right: 1px solid #1e1e1e !important; padding: 16px 10px !important; vertical-align: middle !important; }
+  .bp09 .lbl-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .bp09 .lbl-icon { font-size: 16px; }
+  .bp09 .lbl-title { font-size: 11px; font-weight: 500; color: #c8c4bc; line-height: 1.3; }
+  .bp09 .lbl-sub { font-size: 10px; color: #3a3a3a; line-height: 1.4; }
+
+  /* Data cells — all top aligned */
+  .bp09 .bp tbody td { vertical-align: top; padding: 14px 10px; border-right: 1px solid #181818; border-bottom: 1px solid #181818; }
+  .bp09 .bp tbody td:last-child { border-right: none; }
+
+  /* Row backgrounds */
+  .bp09 .r-evidence td { background: #0e0e0e; }
+  .bp09 .r-customer td { background: #0d1018; }
+  .bp09 .r-front    td { background: #0f0f0f; }
+  .bp09 .r-back     td { background: #0e0c08; }
+  .bp09 .r-support  td { background: #0e0808; }
+
+  /* Override label col for each row */
+  .bp09 .r-evidence .bp09 .lbl,
+  .bp09 .r-customer .bp09 .lbl,
+  .bp09 .r-front .bp09 .lbl,
+  .bp09 .r-back .bp09 .lbl,
+  .bp09 .r-support .bp09 .lbl { background: #0c0c0c !important; }
+
+  /* Divider rows */
+  .bp09 .r-divider td { padding: 0; background: #0c0c0c; border-bottom: none; }
+  .bp09 .divider-inner { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+  .bp09 .divider-line { flex: 1; height: 1px; }
+  .bp09 .divider-label { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+
+  /* Evidence bullets */
+  .bp09 .ev { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 8px; }
+  .ev:last-child { margin-bottom: 0; }
+  .bp09 .ev-dot { width: 5px; height: 5px; border-radius: 50%; background: #444; flex-shrink: 0; margin-top: 4px; }
+  .bp09 .ev-text { font-size: 11px; color: #666; line-height: 1.5; }
+
+  /* Cards */
+  .bp09 .card { border-radius: 5px; padding: 8px 10px; margin-bottom: 7px; font-size: 11px; color: #c8c4bc; line-height: 1.5; border: 1px solid #222; }
+  .card:last-child { margin-bottom: 0; }
+  .bp09 .card-lbl { font-size: 9px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+
+  .bp09 .c-action  { background: #141008; border-left: 2px solid #6a5020; }
+  .bp09 .c-action  .bp09 .card-lbl { color: #7a6030; }
+  .bp09 .c-pain    { background: #140808; border-left: 2px solid #8a3318; }
+  .bp09 .c-pain    .bp09 .card-lbl { color: #8a3318; }
+  .bp09 .c-delight { background: #081408; border-left: 2px solid #3a5c12; }
+  .bp09 .c-delight .bp09 .card-lbl { color: #4a7a18; }
+  .bp09 .c-system  { background: #080e18; border-left: 2px solid #1c4060; }
+  .bp09 .c-system  .bp09 .card-lbl { color: #2a5a80; }
+  .bp09 .c-process { background: #111; border-left: 2px solid #333; }
+  .bp09 .c-process .bp09 .card-lbl { color: #444; }
+
+  /* Legend */
+  .bp09 .legend { display: flex; gap: 18px; margin-top: 20px; padding: 14px 16px; background: #111; border-radius: 8px; flex-wrap: wrap; align-items: center; }
+  .bp09 .leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #888; }
+  .bp09 .leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .bp09 .leg-line { width: 28px; height: 1px; }
+
 </style>
 
 </head>
@@ -346,12 +418,12 @@
       <!-- shared legend below both diagrams -->
       <div style="display:flex;align-items:center;gap:24px;margin-top:16px;padding:12px 16px;background:#111;border-radius:8px;">
         <span style="font-size:11px;font-weight:500;color:#444;letter-spacing:0.06em;text-transform:uppercase;">Legend</span>
-        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#1a1a1a;border:1px solid #333;flex-shrink:0;"></div>Standard step</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;white-space:nowrap;"><div style="width:13px;height:13px;border-radius:3px;background:#1a1a1a;border:1px solid #333;flex-shrink:0;"></div>Standard step</div>
         <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#1c2430;border:1px solid #2a3a4a;flex-shrink:0;"></div>Verify</div>
         <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#162016;border:1px solid #2a3a2a;flex-shrink:0;"></div>Settled</div>
         <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#201a10;border:1px solid #3a2a1a;flex-shrink:0;"></div>Friction</div>
         <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;"><div style="width:13px;height:13px;border-radius:3px;background:#200c0c;border:1px solid #4a1a1a;flex-shrink:0;"></div>Suspension</div>
-        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;margin-left:8px;"><div style="width:28px;border-top:1px dashed #555;"></div>Rework loop</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#888;margin-left:8px;white-space:nowrap;"><div style="width:28px;border-top:1px dashed #555;flex-shrink:0;"></div>Rework loop</div>
       </div>
       </div><!-- close two-col -->
     </div><!-- close section content -->
@@ -436,8 +508,282 @@
   </div>
 
   <!-- 08 -->
-  <div class="shell-last">
+  <div class="shell" style="border-top:1px solid #1a1a1a;">
     <div class="sec-num">08</div>
+    <div style="width:100%;">
+      <h2>Service Design Blueprint</h2>
+      <p style="font-size:14px;color:#666;line-height:1.8;margin-bottom:28px;max-width:680px;">Maps the full service ecosystem across physical evidence, customer actions, frontstage agent actions, backstage processes, and support systems across 6 key stages.</p>
+      <div class="bp09">
+
+
+  <p class="sec-num">Service Design Blueprint</p>
+  <h2 class="sec-heading">Progress Drawdown — 5-Layer Blueprint</h2>
+  <p class="sec-body">Maps the full service ecosystem across physical evidence, customer actions, frontstage agent actions, backstage processes, and support systems across 6 key stages.</p>
+
+  <table class="bp">
+    <colgroup>
+      <col/><col/><col/><col/><col/><col/><col/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Stage 1<br/>Claims Application</th>
+        <th>Stage 2<br/>Opens Sub-Number</th>
+        <th>Stage 3<br/>Views Documents</th>
+        <th>Stage 4<br/>Verifies &amp; Settles</th>
+        <th>Stage 5<br/>Calls Broker</th>
+        <th>Stage 6<br/>Suspends Deal</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ── ROW 1: Physical Evidence ── -->
+      <tr class="r-evidence">
+        <td class="lbl">
+          <div class="lbl-inner">
+            <div class="lbl-icon">🧾</div>
+            <div class="lbl-title">Physical Evidence</div>
+            <div class="lbl-sub">What the agent sees &amp; touches</div>
+          </div>
+        </td>
+        <td>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">OBP Work List screen</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Loan application record</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Loan type classification</span></div>
+        </td>
+        <td>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">OBP Application Tracker</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Standard comments log</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Sub-number record</span></div>
+        </td>
+        <td>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">DVA checklist (7 summaries)</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Excel document sheet</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Document upload portal</span></div>
+        </td>
+        <td>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">OBP Work List</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Completed verification form</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Settlement record</span></div>
+        </td>
+        <td>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Avaya phone system</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Missing doc checklist</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Call log record</span></div>
+        </td>
+        <td>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">OBP Work List</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Suspension notice</span></div>
+          <div class="ev"><div class="ev-dot"></div><span class="ev-text">Pending status flag</span></div>
+        </td>
+      </tr>
+
+      <!-- ── ROW 2: Customer Actions ── -->
+      <tr class="r-customer">
+        <td class="lbl">
+          <div class="lbl-inner">
+            <div class="lbl-icon">👤</div>
+            <div class="lbl-title">Customer Actions</div>
+            <div class="lbl-sub">What the client does</div>
+          </div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Action</div>Submits loan application with documents</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Passive</div>Awaits agent review of their case</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Action</div>Uploads documents to portal</div>
+          <div class="card c-delight"><div class="card-lbl">Delighter</div>Digital e-sign bypasses manual verification</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Passive</div>Awaits verification outcome</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Action</div>Receives call about missing document</div>
+          <div class="card c-action"><div class="card-lbl">Action</div>Re-uploads missing document</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>No automated nudge — relies on phone call</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Passive</div>Unaware deal is suspended</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>No notification that deal is on hold</div>
+        </td>
+      </tr>
+
+      <!-- ── DIVIDER: Line of Visibility ── -->
+      <tr class="r-divider">
+        <td colspan="7">
+          <div class="divider-inner">
+            <div class="divider-line" style="background:repeating-linear-gradient(to right,#3a3a3a 0,#3a3a3a 6px,transparent 6px,transparent 14px);"></div>
+            <span class="divider-label" style="color:#3a3a3a;">Line of Visibility</span>
+            <div class="divider-line" style="background:repeating-linear-gradient(to right,#3a3a3a 0,#3a3a3a 6px,transparent 6px,transparent 14px);"></div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── ROW 3: Frontstage ── -->
+      <tr class="r-front">
+        <td class="lbl">
+          <div class="lbl-inner">
+            <div class="lbl-icon">🎭</div>
+            <div class="lbl-title">Frontstage</div>
+            <div class="lbl-sub">Agent actions visible to client</div>
+          </div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Claims application from OBP Work List</div>
+          <div class="card c-delight"><div class="card-lbl">Delighter</div>Priority queue surfaces urgent cases first</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>Other agents can claim your assigned task</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Opens sub-number, reads standard comments</div>
+          <div class="card c-delight"><div class="card-lbl">Delighter</div>Submission notes shortcut skips full re-read</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>Comments misplaced between applications</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Reviews DVA checklist across all 7 summaries</div>
+          <div class="card c-delight"><div class="card-lbl">Delighter</div>Excel-ready data — compare and verify only</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>No notification when client re-uploads doc</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Verifies documents against loan type</div>
+          <div class="card c-delight"><div class="card-lbl">Delighter</div>Digital verification bypasses manual check</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>BPU and broker uploads misaligned</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Calls client or broker via Avaya phones</div>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Requests document re-upload</div>
+        </td>
+        <td>
+          <div class="card c-action"><div class="card-lbl">Agent Action</div>Marks deal as suspended in OBP</div>
+          <div class="card c-pain"><div class="card-lbl">Pain point</div>Deal requires full rework when it returns</div>
+        </td>
+      </tr>
+
+      <!-- ── DIVIDER: Line of Internal Interaction ── -->
+      <tr class="r-divider">
+        <td colspan="7">
+          <div class="divider-inner">
+            <div class="divider-line" style="background:repeating-linear-gradient(to right,#1c3050 0,#1c3050 6px,transparent 6px,transparent 14px);"></div>
+            <span class="divider-label" style="color:#1c3050;">Line of Internal Interaction</span>
+            <div class="divider-line" style="background:repeating-linear-gradient(to right,#1c3050 0,#1c3050 6px,transparent 6px,transparent 14px);"></div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── ROW 4: Backstage ── -->
+      <tr class="r-back">
+        <td class="lbl">
+          <div class="lbl-inner">
+            <div class="lbl-icon">⚙️</div>
+            <div class="lbl-title">Backstage</div>
+            <div class="lbl-sub">Processes invisible to client</div>
+          </div>
+        </td>
+        <td>
+          <div class="card c-process"><div class="card-lbl">Process</div>Work list auto-populated by system</div>
+          <div class="card c-process"><div class="card-lbl">Process</div>Loan type classification applied</div>
+        </td>
+        <td>
+          <div class="card c-process"><div class="card-lbl">Process</div>Standard comment template loaded</div>
+          <div class="card c-process"><div class="card-lbl">Process</div>Application history retrieved</div>
+        </td>
+        <td>
+          <div class="card c-process"><div class="card-lbl">Process</div>DVA checklist generated per loan type</div>
+          <div class="card c-process"><div class="card-lbl">Process</div>Document list cross-referenced</div>
+        </td>
+        <td>
+          <div class="card c-process"><div class="card-lbl">Process</div>Verification status updated in system</div>
+          <div class="card c-process"><div class="card-lbl">Process</div>Settlement triggered if docs complete</div>
+        </td>
+        <td>
+          <div class="card c-process"><div class="card-lbl">Process</div>Missing doc flagged in system</div>
+          <div class="card c-process"><div class="card-lbl">Process</div>BPU team notified (manual)</div>
+        </td>
+        <td>
+          <div class="card c-process"><div class="card-lbl">Process</div>Case status set to Suspended</div>
+          <div class="card c-process"><div class="card-lbl">Process</div>Case re-queued when doc received</div>
+        </td>
+      </tr>
+
+      <!-- ── DIVIDER: Line of Support ── -->
+      <tr class="r-divider">
+        <td colspan="7">
+          <div class="divider-inner">
+            <div class="divider-line" style="background:repeating-linear-gradient(to right,#3a1a1a 0,#3a1a1a 6px,transparent 6px,transparent 14px);"></div>
+            <span class="divider-label" style="color:#3a1a1a;">Line of Support</span>
+            <div class="divider-line" style="background:repeating-linear-gradient(to right,#3a1a1a 0,#3a1a1a 6px,transparent 6px,transparent 14px);"></div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── ROW 5: Support Systems ── -->
+      <tr class="r-support">
+        <td class="lbl">
+          <div class="lbl-inner">
+            <div class="lbl-icon">🖥️</div>
+            <div class="lbl-title">Support Systems</div>
+            <div class="lbl-sub">Tools enabling the service</div>
+          </div>
+        </td>
+        <td>
+          <div class="card c-system"><div class="card-lbl">System</div>OBP Work List</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Loan Management System</div>
+        </td>
+        <td>
+          <div class="card c-system"><div class="card-lbl">System</div>OBP Application Tracker</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Comments database</div>
+        </td>
+        <td>
+          <div class="card c-system"><div class="card-lbl">System</div>DVA Checklist engine</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Document upload portal</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Excel verification sheet</div>
+        </td>
+        <td>
+          <div class="card c-system"><div class="card-lbl">System</div>OBP Work List</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Settlement processing system</div>
+        </td>
+        <td>
+          <div class="card c-system"><div class="card-lbl">System</div>Avaya Phone System</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Document upload portal</div>
+          <div class="card c-system"><div class="card-lbl">System</div>BPU coordination tool</div>
+        </td>
+        <td>
+          <div class="card c-system"><div class="card-lbl">System</div>OBP Work List</div>
+          <div class="card c-system"><div class="card-lbl">System</div>Case management system</div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- Legend -->
+  <div class="legend" style="display:grid;grid-template-columns:auto 1fr;gap:12px 18px;align-items:center;">
+    <span style="font-size:11px;font-weight:500;color:#444;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;">Legend</span>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:nowrap;">
+      <div class="leg-item"><div class="leg-dot" style="background:#6a5020;"></div>Agent / Customer action</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#8a3318;"></div>Pain point</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#3a5c12;"></div>Delighter</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#1c4060;"></div>System / Tool</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#333;"></div>Process</div>
+    </div>
+    <div></div>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:nowrap;">
+      <div class="leg-item"><div class="leg-line" style="background:repeating-linear-gradient(to right,#3a3a3a 0,#3a3a3a 5px,transparent 5px,transparent 10px);"></div>Line of Visibility</div>
+      <div class="leg-item"><div class="leg-line" style="background:repeating-linear-gradient(to right,#1c3050 0,#1c3050 5px,transparent 5px,transparent 10px);"></div>Internal Interaction</div>
+      <div class="leg-item"><div class="leg-line" style="background:repeating-linear-gradient(to right,#3a1a1a 0,#3a1a1a 5px,transparent 5px,transparent 10px);"></div>Line of Support</div>
+    </div>
+  </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 -->
+  <div class="shell-last">
+    <div class="sec-num">09</div>
     <div>
       <h2>What did I learn from this project…</h2>
       <div class="refl-grid">
@@ -452,6 +798,7 @@
       </div>
     </div>
   </div>
+
 
 
 </div>
